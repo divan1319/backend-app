@@ -1,5 +1,5 @@
 <?php 
-	
+
 	/**
 	MOSTRANDO ERRORES 
 	 **/

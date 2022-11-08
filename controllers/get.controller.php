@@ -15,8 +15,16 @@
 		/*========================================================
 	    RETORNANDO TODOS LOS DATOS DE LA TABLA VEHICULOS
 	    ==========================================================*/
-		static public function getDataVehicle(){
-			$response = GetModel::getDataVehicle();
+		static public function getDataVehicle($id){
+			$response = GetModel::getDataVehicle($id);
+			$return = new GetController();
+			$return -> fncResponse($response);
+		}
+				/*========================================================
+	    RETORNANDO VEHICULO SEGUN USUARIO
+	    ==========================================================*/
+		static public function getDataMyVehicle($id){
+			$response = GetModel::getDataMyVehicle($id);
 			$return = new GetController();
 			$return -> fncResponse($response);
 		}

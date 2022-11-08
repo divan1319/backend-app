@@ -17,5 +17,5 @@ if($email == "" && $pass == ""){
 }else{
 	$verify = $con->login($email,$pass);
 	}
+
 	
-	//echo password_hash("hola1234", PASSWORD_DEFAULT);

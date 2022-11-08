@@ -17,11 +17,18 @@ $img1 = $_POST['foto1'];
 $img2 = $_POST['foto2'];
 $img3 = $_POST['foto3'];
 
+if($_GET['op'] == "update"){
+	$id = $_POST['idVehicle'];
+$vehicles = $con->UpdateVehicle($tipo,$modelo,$year,$state,$desc,$price,$service,$usuario,$img1,$img2,$img3,$id);
+}else{
+$vehicles = $con->AddVehicle($tipo,$modelo,$year,$state,$desc,$price,$service,$usuario,$img1,$img2,$img3);
+}
+
 
 	/*$imgComp1 = 'http://192.168.0.9/backend-app/images/photos/'.$_FILES['foto1']['name'];
 	$imgComp2 = 'http://192.168.0.9/backend-app/images/photos/'.$_FILES['foto2']['name'];
 	$imgComp3 = 'http://192.168.0.9/backend-app/images/photos/'.$_FILES['foto3']['name'];**/
-	$vehicles = $con->AddVehicle($tipo,$modelo,$year,$state,$desc,$price,$service,$usuario,$img1,$img2,$img3);
+	
 
 
 

@@ -1,20 +1,31 @@
 <?php
 
-require_once "headers/headers.php";
+require_once "headers/header.php";
 require_once "database/auth.php";
-
-$data = json_decode(file_get_contents("php://input"));
 
 $con = new Auth();
 
-$nombre = $data->nombre;
-$pass = $data->contrasena;
-$correo = $data->correo;
-$dui = $data->dui;
-$telefono = $data->telefono;
-
-$pass_encryp = password_hash($pass,PASSWORD_DEFAULT);
+$nombre = $_POST['nombre'];
+$correo = $_POST['correo'];
+$dui = $_POST['dui'];
+$telefono = $_POST['telefono'];
 
 
+if($_GET['op'] == 'updUser'){
+	$id=$_POST['id'];
+	$newPass = $_POST['newPass'];
+	if(empty($newPass)){
+		$verify = $con->UpdateUser($nombre,$newPass,$correo,$dui,$telefono,$id);
+	}else{
+		$NewPass_encryp = password_hash($newPass,PASSWORD_DEFAULT);	
+		$verify = $con->UpdateUser($nombre,$NewPass_encryp,$correo,$dui,$telefono,$id);
+	}
 
-$verify = $con->Registro($nombre,$pass_encryp,$correo,$dui,$telefono);
+}else if($_GET['op'] == 'newUser'){
+	$pass = $_POST['contrasena'];
+	$pass_encryp = password_hash($pass,PASSWORD_DEFAULT);
+	$photo = $_POST['foto'];
+	$verify = $con->Registro($photo,$nombre,$pass_encryp,$correo,$dui,$telefono);
+}
+
+
